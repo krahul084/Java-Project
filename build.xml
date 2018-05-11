@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="Rectangle Jar" basedir="." default="main">
+
+	<target name="init" description="Initializes properties">
+		<property name="project.name" value="Rectangle" />
+		<property name="src.dir" value="src"/>
+		<property name="build.dir" value="build" />
+		<property name="classes.dir" value="${build.dir}/classes" />
+	</target>
+
+	
+	<target name="clean" description="Cleaning before building" depends="init">
+		<delete dir="${build.dir}" />
+
+	</target>
+
+	<target name="prepare" description="Initializes Build Directories" depends="clean">
+		<mkdir dir="${classes.dir}" />
+	</target>
+
+	<target name="compile" description="Compiling classes" depends="prepare" >
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" />
+	</target>
+ 
+ 	<target name="jarfile" description="Creates jarfile" depends="compile">
+ 		<jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}" />
+ 	</target>
+
+ 	<target name="main" description="Main Target" depends="jarfile">
+ 	</target>
+
+</project>
